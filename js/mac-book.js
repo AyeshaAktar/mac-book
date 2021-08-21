@@ -9,17 +9,25 @@ const initialMemoryCost = document.getElementById('memory-price');
 const initialStorageCost = document.getElementById('storage-price');
 const initialDeliveryCharge = document.getElementById('delivery-charge');
 const total = document.getElementById('total');
-const grandTotal = document.getElementById('grand-total');
+const discuntTotal = document.getElementById('grand-total');
 
+
+function macBook(price, initialCost){
+    const initialPrice = price;
+    initialCost.innerText = initialPrice;
+    totalPrice();
+}
 //memory
 memory8Gb.addEventListener('click', function(){
     macBook(0, initialMemoryCost);
+   
     // const memoryCost = 0;
     // initialMemoryCost.innerText =memoryCost;
     //     totalPrice();
 })
 memory16Gb.addEventListener('click', function(){
     macBook(180, initialMemoryCost);
+    
 })
 
 //storage
@@ -56,12 +64,6 @@ deliveryPaid.addEventListener('click', function(){
     //     totalPrice();
 })
 
-function macBook(price, initialCost){
-    const initialPrice = price;
-    initialCost.innerText = initialPrice;
-    totalPrice();
-}
-
 function totalPrice(){
     const bestPrice = 1299;
     const extraMemoryCost = initialMemoryCost.innerText;
@@ -69,35 +71,19 @@ function totalPrice(){
     const deliveryCharge = initialDeliveryCharge.innerText;
     const totalPrice = bestPrice + parseInt(extraMemoryCost) + parseInt(extraStorageCost) + parseInt(deliveryCharge);
     total.innerText = totalPrice;
+
+    discuntTotal.innerText = totalPrice;
 }
 
 
-
-
-
-
-
-
-
-/* function memory(price){
-    // const memoryCost8Gb = 0;
-    // const memoryCost16Gb = 180;
-    const memorCostValue= initialMemoryCost.innerText;
-    const totalMemoryCost = parseInt(memorCostValue) + price;
-    if(totalMemoryCost == 180){
-        initialMemoryCost.innerText = totalMemoryCost;
-        // totalPrice();
+document.getElementById('apply').addEventListener('click', function(){
+    const codeField = document.getElementById('promo-code');
+    // console.log('clicked');
+    const promoCode = codeField.value;
+    const discunt = 20;
+    if(promoCode == 'stevekaku'){ 
+    const discuntPrice = discuntTotal * discunt / 100;
+        discuntTotal.innerText = discuntPrice;
     }
-    else {
-        initialMemoryCost.innerText =totalMemoryCost;
-    }
-    totalPrice();
-} */
-
-
-
-
-
-
-
-
+    codeField.value = '';
+})
